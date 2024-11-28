@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Register at Kennedy's Medical Blog</title>
+    <link
+      rel="icon"
+      href="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhbHRofGVufDB8fDB8fHww"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background-image: url(https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhbHRofGVufDB8fDB8fHww);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+      }
+      .hero {
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <section
+      class="d-flex justify-content-center align-items-center vh-100 w-100"
+    >
+      <div
+        class="col-lg-4 col-md-6 col-12 shadow-lg rounded-4 p-4"
+        style="background-color: rgba(0, 0, 0, 0.7)"
+      >
+        <div class="text-center mb-4">
+          <h1 class="display-4 font-serif text-white">Welcome!!!</h1>
+          <p class="text-white">Please register your account</p>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="d-flex justify-content-between mb-3">
+              <button
+                class="btn btn-warning w-50 rounded-pill text-white py-2 user-btn"
+              >
+                USER
+              </button>
+              <button
+                class="btn btn-dark w-50 rounded-pill text-white py-2 admin-btn"
+              >
+                ADMIN
+              </button>
+            </div>
+            <form method="post" id="user-form">
+              {% csrf_token %}
+              <!-- email -->
+              <div class="form-group mb-3">
+                <input
+                  type="text"
+                  placeholder="Username"
+                  name="username"
+                  required
+                  class="form-control rounded-pill border-dark py-2 px-3"
+                />
+              </div>
+
+              <!-- email -->
+              <div class="form-group mb-3">
+                <input
+                  type="text"
+                  placeholder="Email"
+                  name="email"
+                  required
+                  class="form-control rounded-pill border-dark py-2 px-3"
+                />
+              </div>
+
+              <!-- password 1 -->
+              <div class="form-group mb-3">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password1"
+                  required
+                  class="form-control rounded-pill border-dark py-2 px-3"
+                />
+              </div>
+
+              <!-- password 2 -->
+              <div class="form-group mb-3">
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  name="password2"
+                  required
+                  class="form-control rounded-pill border-dark py-2 px-3"
+                />
+              </div>
+
+              <!-- button -->
+              <button
+                type="submit"
+                class="btn btn-dark w-100 rounded-pill text-white py-2"
+              >
+                Register
+              </button>
+            </form>
+
+            <form method="post" id="admin-form" style="display: none">
+              {% csrf_token %}
+              <!-- email -->
+              <div class="form-group mb-3">
+                <input
+                  type="text"
+                  placeholder="Username"
+                  name="username"
+                  required
+                  class="form-control rounded-pill border-dark py-2 px-3"
+                />
+              </div>
+
+              <!-- email -->
+              <div class="form-group mb-3">
+                <input
+                  type="text"
+                  placeholder="Email"
+                  name="email"
+                  required
+                  class="form-control rounded-pill border-dark py-2 px-3"
+                />
+              </div>
+
+              <!-- password 1 -->
+              <div class="form-group mb-3">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password1"
+                  required
+                  class="form-control rounded-pill border-dark py-2 px-3"
+                />
+              </div>
+
+              <!-- password 2 -->
+              <div class="form-group mb-3">
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  name="password2"
+                  required
+                  class="form-control rounded-pill border-dark py-2 px-3"
+                />
+              </div>
+
+              <!-- button -->
+              <button
+                type="submit"
+                class="btn btn-dark w-100 rounded-pill text-white py-2"
+              >
+                Register
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <span class="text-white"
+            >Already have an account?
+            <a href="{% url 'login' %}" class="fw-bold text-success"
+              >Login</a
+            ></span
+          >
+        </div>
+
+        <div class="text-center mt-4">
+          <p class="small text-white">
+            By Registering, you agree to Medium's
+            <a href="#" class="text-decoration-underline">Terms of Service</a>
+            and acknowledge that Medium's
+            <a href="#" class="text-decoration-underline">Privacy Policy</a>
+            applies to you.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const userBtn = document.querySelector(".user-btn");
+      const adminBtn = document.querySelector(".admin-btn");
+      const userForm = document.getElementById("user-form");
+      const adminForm = document.getElementById("admin-form");
+
+      userBtn.addEventListener("click", () => {
+        userBtn.classList.add("btn-warning");
+        userBtn.classList.remove("btn-dark");
+        adminBtn.classList.add("btn-dark");
+        adminBtn.classList.remove("btn-warning");
+        userForm.style.display = "block";
+        adminForm.style.display = "none";
+      });
+
+      adminBtn.addEventListener("click", () => {
+        adminBtn.classList.add("btn-warning");
+        adminBtn.classList.remove("btn-dark");
+        userBtn.classList.add("btn-dark");
+        userBtn.classList.remove("btn-warning");
+        adminForm.style.display = "block";
+        userForm.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
